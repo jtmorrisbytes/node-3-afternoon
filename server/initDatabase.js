@@ -1,7 +1,7 @@
 require("dotenv").config();
 const massive = require("massive");
 massive(process.env.DATABASE_URL).then(db => {
-  db.products
+  db.product
     .seed()
     .then(result => {
       console.log("seeded products table");

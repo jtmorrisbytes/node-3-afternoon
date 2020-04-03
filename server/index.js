@@ -3,7 +3,16 @@ const express = require("express");
 const massive = require("massive");
 
 const app = express();
+app.use(require("morgan")("dev"));
+app.use(express.json());
 
+const productController = require("./controllers/product");
+
+app.get("/api/products", productController.getAll);
+app.get("/api/products/:id", productController.getOne);
+app.put("/api/products/:id", productController.update);
+app.post("/api/products", productController.create);
+app.delete("/api/products/:id", productController.delete);
 // since we are performing operations with the database,
 // I dont want the server to run until the database is connected
 
